@@ -25,7 +25,7 @@ steps:
     command: 'pack'
     packagesToPack: '**/*.csproj'
     versioningScheme: 'off'
-    buildProperties: '/p:Version=$(GITVERSION.SEMVER) /p:AssemblyVersion=$(GITVERSION.ASSEMBLYSEMVER) /p:AssemblyInformationalVersion=$(GITVERSION.INFORMATIONALVERSION)'
+    buildProperties: 'Version=$(GITVERSION.SEMVER) /p:AssemblyVersion=$(GITVERSION.ASSEMBLYSEMVER) /p:AssemblyInformationalVersion=$(GITVERSION.INFORMATIONALVERSION)'
     verbosityPack: 'Normal'
 - task: CopyFiles@2
   inputs:
