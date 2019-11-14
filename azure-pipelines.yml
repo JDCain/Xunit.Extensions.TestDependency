@@ -25,6 +25,7 @@ stages:
             configuration: '$(Build.Configuration)'
 
   - job: Test
+    dependsOn: Build
     steps:
       - task: VSTest@2
         inputs:
@@ -41,7 +42,8 @@ stages:
             versioningScheme: 'off'
             buildProperties: 'PackageVersion=$(GITVERSION.SEMVER);AssemblyVersion=$(GITVERSION.ASSEMBLYSEMVER);InformationalVersion=$(GITVERSION.INFORMATIONALVERSION)'
             verbosityPack: 'Normal'
-  - job: 'Artifact'
+  - job: Artifact
+    dependsOn: Test
     steps:
       - task: PublishBuildArtifacts@1
         inputs:
