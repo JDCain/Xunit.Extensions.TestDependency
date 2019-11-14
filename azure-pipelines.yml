@@ -35,7 +35,6 @@ steps:
     versioningScheme: 'off'
     buildProperties: 'PackageVersion=$(GITVERSION.SEMVER);AssemblyVersion=$(GITVERSION.ASSEMBLYSEMVER);InformationalVersion=$(GITVERSION.INFORMATIONALVERSION)'
     verbosityPack: 'Normal'
-    configuration: '$(Build.Configuration)'
 - task: PublishBuildArtifacts@1
   inputs:
     pathToPublish: $(Build.ArtifactStagingDirectory)
