@@ -13,9 +13,8 @@ steps:
 - task: GitVersion@5
   inputs:
     runtime: 'core'
-    updateAssemblyInfo: true
-    preferBundledVersion: true
-
+    configFilePath: 'GitVersion.yml'
+    additionalArguments: '/output json'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
