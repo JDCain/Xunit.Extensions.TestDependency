@@ -24,8 +24,9 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
-    versioningScheme: 'byEnvVar'
-    versionEnvVar: 'GITVERSION_SEMVER'
+    versioningScheme: 'off'
+    buildProperties: '/p:Version=GITVERSION_SEMVER /p:AssemblyVersion=GITVERSION_ASSEMBLYSEMVER /p:AssemblyInformationalVersion=GITVERSION_INFORMATIONALVERSION'
+    verbosityPack: 'Normal'
 - task: CopyFiles@2
   inputs:
     contents: '**/*.nupkg'
