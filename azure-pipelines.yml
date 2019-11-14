@@ -15,6 +15,11 @@ steps:
     runtime: 'core'
     configFilePath: 'GitVersion.yml'
     additionalArguments: '/output json'
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: 'printenv | sort'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
