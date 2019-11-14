@@ -45,7 +45,7 @@ stages:
             pathToPublish: $(Build.ArtifactStagingDirectory)
             artifactName: drop
 - stage: Release
-  condition: and(succeeded('Build'), eq(variables['build.sourceBranch'], 'refs/heads/release/*'))
+  condition: succeeded('Build')
   jobs:
     - job: 
       steps:
