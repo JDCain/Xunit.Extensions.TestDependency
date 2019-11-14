@@ -9,6 +9,7 @@ You should not do it, but here is how to do it.
   * Use partial classes to help keep tests organized.
 * Classes can run in parellel against each other.
   * If using this with Selenium tests you will need to configure your WebDriver to have individual profiles per test else they will share the same instance.
+* Test Name depends on the current DisplayName used by Xunit. If it is not set to method only then it expects the whole namespace with methodname.
 
 
 ## Using
