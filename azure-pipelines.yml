@@ -48,7 +48,7 @@ stages:
             pathToPublish: $(Build.ArtifactStagingDirectory)
             artifactName: drop
 - stage: Release
-  condition: and(succeeded('Build'),condition:contains(variables['Build.SourceBranch'], '*'))
+  condition: and(succeeded('Build'),contains(variables['Build.SourceBranch'], '*'))
   jobs:
     - job: 
       steps:
