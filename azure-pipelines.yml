@@ -10,6 +10,10 @@ trigger:
   paths:
     include:
     - src/*
+    - tests/*
+  tags:
+    include:
+    - '*'
 
 pool:
   vmImage: 'windows-2019'
@@ -53,7 +57,7 @@ stages:
             script: |
                 get-childitem Env:
 - stage: Release
-  condition: and(succeeded('Build'),contains(variables['Build_SourceBranch'], '*'))
+  condition: and(succeeded('Build'),contains(variables['Build_SourceBranch'], 'tags'))
   jobs:
     - job: 
       steps:
