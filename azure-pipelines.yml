@@ -18,7 +18,8 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
-    versioningScheme: 'off'
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: '$(GitVersion.SemVer)'
 - task: CopyFiles@2
   inputs:
     contents: '**/*.nupkg'
