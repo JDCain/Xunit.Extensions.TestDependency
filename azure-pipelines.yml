@@ -17,6 +17,19 @@ steps:
     additionalArguments: '/output json'
 - task: DotNetCoreCLI@2
   inputs:
+    command: 'build'
+    projects: '**/*tests.csproj'
+    configuration: '$(Build.Configuration)'
+- task: VSTest@2
+  inputs:
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\*tests*.dll
+      !**\*TestAdapter.dll
+      !**\obj\**
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+- task: DotNetCoreCLI@2
+  inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
     versioningScheme: 'off'
