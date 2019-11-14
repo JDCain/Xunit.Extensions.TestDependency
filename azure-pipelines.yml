@@ -14,6 +14,8 @@ steps:
   inputs:
     runtime: 'core'
     updateAssemblyInfo: true
+    preferBundledVersion: true
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
