@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFrameworks>netcoreapp3.0;netcoreapp2.2;netcoreapp2.1;net461;net471</TargetFrameworks>
     <RootNamespace>Xunit.Extensions.TestDependency_Tests</RootNamespace>
 
     <IsPackable>false</IsPackable>

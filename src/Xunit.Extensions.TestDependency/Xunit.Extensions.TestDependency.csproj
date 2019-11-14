@@ -1,7 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFrameworks>netcoreapp3.0;netcoreapp2.2;netcoreapp2.1;net461;net471</TargetFrameworks>
+    <Authors>J.D. Cain</Authors>
+    <Company />
+    <Description>Xunit extension for topological ordering of test dependencies within a collection</Description>
+    <PackageProjectUrl>https://github.com/JDCain/Xunit.Extensions.TestDependency</PackageProjectUrl>
+    <Copyright />
   </PropertyGroup>
 
   <ItemGroup>
