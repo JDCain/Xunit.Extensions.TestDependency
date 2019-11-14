@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-2019'
 
 steps:
 - task: GitVersion@5
@@ -15,11 +15,6 @@ steps:
     runtime: 'core'
     configFilePath: 'GitVersion.yml'
     additionalArguments: '/output json'
-
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: 'printenv | sort'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
@@ -27,10 +22,6 @@ steps:
     versioningScheme: 'off'
     buildProperties: 'PackageVersion=$(GITVERSION.SEMVER);AssemblyVersion=$(GITVERSION.ASSEMBLYSEMVER);AssemblyInformationalVersion=$(GITVERSION.INFORMATIONALVERSION)'
     verbosityPack: 'Normal'
-- task: CopyFiles@2
-  inputs:
-    contents: '**/*.nupkg'
-    targetFolder: $(Build.ArtifactStagingDirectory)
 - task: PublishBuildArtifacts@1
   inputs:
     pathToPublish: $(Build.ArtifactStagingDirectory)
