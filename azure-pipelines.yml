@@ -4,14 +4,16 @@
 # https://aka.ms/yaml
 
 trigger:
-- release/*
+ branches:
+    include:
+    - '*'
 
 pool:
   vmImage: 'windows-2019'
 stages:
-- stage: A
+- stage: Build
   jobs:
-  - job: Build
+  - job: 
     steps:
       - task: GitVersion@5
         inputs:
@@ -23,10 +25,6 @@ stages:
             command: 'build'
             projects: '**/*tests.csproj'
             configuration: '$(Build.Configuration)'
-
-  - job: Test
-    dependsOn: Build
-    steps:
       - task: VSTest@2
         inputs:
             testSelector: 'testAssemblies'
@@ -42,10 +40,19 @@ stages:
             versioningScheme: 'off'
             buildProperties: 'PackageVersion=$(GITVERSION.SEMVER);AssemblyVersion=$(GITVERSION.ASSEMBLYSEMVER);InformationalVersion=$(GITVERSION.INFORMATIONALVERSION)'
             verbosityPack: 'Normal'
-  - job: Artifact
-    dependsOn: Test
-    steps:
       - task: PublishBuildArtifacts@1
         inputs:
             pathToPublish: $(Build.ArtifactStagingDirectory)
             artifactName: drop
+- stage: Release
+  condition: and(succeeded('Build'), eq(variables['build.sourceBranch'], 'refs/heads/release/*'))
+  jobs:
+    - job: 
+      steps:
+        - task: PowerShell@2
+          inputs:
+            targetType: 'inline'
+            script: |
+                # Write your PowerShell commands here.
+                
+                Write-Host "Hello World"
