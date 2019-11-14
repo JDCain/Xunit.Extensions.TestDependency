@@ -4,9 +4,12 @@
 # https://aka.ms/yaml
 
 trigger:
- branches:
+  branches:
     include:
     - '*'
+  paths:
+    include:
+    - src/*
 
 pool:
   vmImage: 'windows-2019'
@@ -45,7 +48,7 @@ stages:
             pathToPublish: $(Build.ArtifactStagingDirectory)
             artifactName: drop
 - stage: Release
-  condition: succeeded('Build')
+  condition: and(succeeded('Build'),condition:contains(variables['Build.SourceBranch'], '*'))
   jobs:
     - job: 
       steps:
