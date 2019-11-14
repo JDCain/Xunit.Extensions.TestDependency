@@ -17,20 +17,25 @@ steps:
     additionalArguments: '/output json'
 - task: DotNetCoreCLI@2
   inputs:
+    command: 'build'
+    projects: '**/*tests.csproj'
+    configuration: '$(Build.Configuration)'
+- task: VSTest@2
+  inputs:
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\*tests*.dll
+      !**\*TestAdapter.dll
+      !**\obj\**
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+- task: DotNetCoreCLI@2
+  inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
     versioningScheme: 'off'
     buildProperties: 'PackageVersion=$(GITVERSION.SEMVER);AssemblyVersion=$(GITVERSION.ASSEMBLYSEMVER);InformationalVersion=$(GITVERSION.INFORMATIONALVERSION)'
     verbosityPack: 'Normal'
-- task: VSTest@2
-  inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\*test*.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-    diagnosticsEnabled: true
+    configuration: '$(Build.Configuration)'
 - task: PublishBuildArtifacts@1
   inputs:
     pathToPublish: $(Build.ArtifactStagingDirectory)
