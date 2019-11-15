@@ -57,7 +57,7 @@ stages:
             script: |
                 get-childitem Env:
 - stage: Release
-  condition: and(succeeded('Build'),contains(variables['Build_SourceBranch'], 'tags'))
+  condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
   jobs:
     - job: 
       steps:
