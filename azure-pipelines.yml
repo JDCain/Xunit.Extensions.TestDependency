@@ -71,7 +71,6 @@ stages:
       - task: DotNetCoreCLI@2
         inputs:
           command: 'push'
-          packagesToPush: '**/*.nupkg'
+          packagesToPush: '$(System.ArtifactsDirectory)/drop/*.nupkg'
           nuGetFeedType: 'external'
           publishFeedCredentials: 'nuget.org'
-          workingDirectory: '$(System.ArtifactsDirectory)'
