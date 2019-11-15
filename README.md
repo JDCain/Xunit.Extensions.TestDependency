@@ -2,6 +2,7 @@
 **Supports:** *.NET Core 1.x, .NET Core 2.x.*, .NET Core 3.x.* and *.NET 4.6.1+*
 Works in parallel
 
+[![Build Status](https://servus.visualstudio.com/Xunit.Extensions.TestDependency/_apis/build/status/JDCain.Xunit.Extensions.TestDependency?branchName=master&jobName=Job)](https://servus.visualstudio.com/Xunit.Extensions.TestDependency/_build/latest?definitionId=3&branchName=master)
 ## So you want to have dependent tests
 You should not do it, but here is how to do it.
 
