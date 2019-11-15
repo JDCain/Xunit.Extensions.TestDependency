@@ -61,10 +61,9 @@ stages:
   jobs:
     - job: 
       steps:
-        - task: PowerShell@2
+        - task: DotNetCoreCLI@2
           inputs:
-            targetType: 'inline'
-            script: |
-                # Write your PowerShell commands here.
-                
-                Write-Host "Hello World"
+            command: 'push'
+            packagesToPush: '**/*.nupkg'
+            nuGetFeedType: 'external'
+            publishFeedCredentials: 'nuget.org'
