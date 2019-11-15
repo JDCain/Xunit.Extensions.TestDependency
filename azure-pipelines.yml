@@ -61,9 +61,13 @@ stages:
   jobs:
     - job: 
       steps:
-      - download: current
-        artifact: drop
-        patterns: '**/*.nupkg'
+      - task: DownloadBuildArtifacts@0
+        inputs:
+            buildType: 'current'
+            downloadType: 'single'
+            artifactName: drop
+            itemPattern: '**/*.nupkg'
+            downloadPath: '$(System.ArtifactsDirectory)'
       - task: DotNetCoreCLI@2
         inputs:
           command: 'push'
