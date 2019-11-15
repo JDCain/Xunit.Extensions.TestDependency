@@ -61,9 +61,12 @@ stages:
   jobs:
     - job: 
       steps:
-        - task: DotNetCoreCLI@2
-          inputs:
-            command: 'push'
-            packagesToPush: '**/*.nupkg'
-            nuGetFeedType: 'external'
-            publishFeedCredentials: 'nuget.org'
+      - download: current
+        artifact: drop
+        patterns: '**/*.nupkg'
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'push'
+          packagesToPush: '**/*.nupkg'
+          nuGetFeedType: 'external'
+          publishFeedCredentials: 'nuget.org'
