@@ -11,7 +11,7 @@ namespace Xunit.Extensions.TestDependency_Tests
         public static List<double> ExecutionOrder { get; set; } = new List<double>();
 
         [Fact]
-        [TestDependency("OrderedTest1")]
+        [TestDependency(nameof(OrderedTest1))]
         public void OrderedTest0()
         {
             ExecutionOrder.Add(0);
@@ -22,7 +22,7 @@ namespace Xunit.Extensions.TestDependency_Tests
         }
 
         [Theory]
-        [TestDependency("OrderedTest3")]
+        [TestDependency(nameof(OrderedTest3))]
         [InlineData(2.1)]
         [InlineData(2.2)]
         public void OrderedTest2(double i)

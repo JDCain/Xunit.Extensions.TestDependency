@@ -35,7 +35,7 @@ public partial class OrderTests
     public static List<double> ExecutionOrder { get; set; } = new List<double>();
 
     [Fact]
-    [TestDependency("OrderedTest1")]
+    [TestDependency(nameof(OrderedTest1))]
     public void OrderedTest0()
     {
         ExecutionOrder.Add(0);
@@ -46,7 +46,7 @@ public partial class OrderTests
     }
 
     [Theory]
-    [TestDependency("OrderedTest3")]
+    [TestDependency(nameof(OrderedTest3))]
     [InlineData(2.1)]
     [InlineData(2.2)]
     public void OrderedTest2(double i)
