@@ -10,7 +10,7 @@ namespace Xunit.Extensions.TestDependency
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class TestDependencyAttribute : Attribute
     {
-        /// <summary>        
+        /// <summary>
         /// </summary>
         /// <param name="tests">Test Method names this method depend on having run first</param>
         public TestDependencyAttribute(params string[] tests) => Tests = tests.ToList();

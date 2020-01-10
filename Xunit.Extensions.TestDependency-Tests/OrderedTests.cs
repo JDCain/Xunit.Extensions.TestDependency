@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using Xunit;
 using Xunit.Extensions.TestDependency;
 
 namespace Xunit.Extensions.TestDependency_Tests
 {
     [Trait("xUnit", "Ordered")]
     [TestCaseOrderer(DependencyOrderer.TypeName, DependencyOrderer.AssemblyName)]
-    public partial class OrderTests 
+    public partial class OrderTests
     {
         public static List<double> ExecutionOrder { get; set; } = new List<double>();
 
@@ -27,7 +26,6 @@ namespace Xunit.Extensions.TestDependency_Tests
         [InlineData(2.2)]
         public void OrderedTest2(double i)
         {
-            
             ExecutionOrder.Add(i);
             Assert.DoesNotContain(0, ExecutionOrder);
             Assert.DoesNotContain(1, ExecutionOrder);
@@ -37,7 +35,7 @@ namespace Xunit.Extensions.TestDependency_Tests
 
     public partial class OrderTests
     {
-        [Fact]        
+        [Fact]
         public void OrderedTest3()
         {
             ExecutionOrder.Add(3);
