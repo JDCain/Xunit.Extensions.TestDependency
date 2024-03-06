@@ -22,6 +22,10 @@ stages:
   jobs:
   - job: 
     steps:
+      - task: gitversion/setup@0
+        inputs:
+          versionSpec: '5.x'
+          preferLatestVersion: true
       - task: gitversion/execute@0
         inputs:
           configFilePath: 'GitVersion.yml'
