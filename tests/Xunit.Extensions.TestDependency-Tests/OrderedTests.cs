@@ -8,7 +8,7 @@ namespace Xunit.Extensions.TestDependency_Tests
     [TestCaseOrderer(DependencyOrderer.TypeName, DependencyOrderer.AssemblyName)]
     public partial class OrderTests 
     {
-        public static List<double> ExecutionOrder { get; set; } = new List<double>();
+        public static List<decimal> ExecutionOrder { get; set; } = new List<decimal>();
 
         [Fact]
         [TestDependency(nameof(OrderedTest1))]
@@ -16,23 +16,28 @@ namespace Xunit.Extensions.TestDependency_Tests
         {
             ExecutionOrder.Add(0);
             Assert.Contains(1, ExecutionOrder);
-            Assert.Contains(2.1, ExecutionOrder);
-            Assert.Contains(2.2, ExecutionOrder);
+            Assert.Contains(2.1M, ExecutionOrder);
+            Assert.Contains(2.2M, ExecutionOrder);
             Assert.Contains(3, ExecutionOrder);
         }
 
         [Theory]
         [TestDependency(nameof(OrderedTest3))]
-        [InlineData(2.1)]
-        [InlineData(2.2)]
-        public void OrderedTest2(double i)
+        [MemberData(nameof(Data))]
+        public void OrderedTest2(decimal i)
         {
-            
+        
             ExecutionOrder.Add(i);
             Assert.DoesNotContain(0, ExecutionOrder);
             Assert.DoesNotContain(1, ExecutionOrder);
             Assert.Contains(3, ExecutionOrder);
         }
+
+        public static TheoryData<decimal> Data => new TheoryData<decimal>()
+        {
+            { 2.1M },
+            { 2.2M },
+        };
     }
 
     public partial class OrderTests
@@ -43,8 +48,8 @@ namespace Xunit.Extensions.TestDependency_Tests
             ExecutionOrder.Add(3);
             Assert.DoesNotContain(0, ExecutionOrder);
             Assert.DoesNotContain(1, ExecutionOrder);
-            Assert.DoesNotContain(2.1, ExecutionOrder);
-            Assert.DoesNotContain(2.2, ExecutionOrder);
+            Assert.DoesNotContain(2.1m, ExecutionOrder);
+            Assert.DoesNotContain(2.2m, ExecutionOrder);
         }
 
         [Fact]
@@ -53,10 +58,12 @@ namespace Xunit.Extensions.TestDependency_Tests
         {
             ExecutionOrder.Add(1);
             Assert.DoesNotContain(0, ExecutionOrder);
-            Assert.Contains(2.1, ExecutionOrder);
-            Assert.Contains(2.1, ExecutionOrder);
-            Assert.Contains(2.2, ExecutionOrder);
+            Assert.Contains(2.1m, ExecutionOrder);
+            Assert.Contains(2.1m, ExecutionOrder);
+            Assert.Contains(2.2m, ExecutionOrder);
             Assert.Contains(3, ExecutionOrder);
         }
     }
+
+
 }

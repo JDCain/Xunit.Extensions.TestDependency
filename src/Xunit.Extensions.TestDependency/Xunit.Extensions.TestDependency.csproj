@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.0;netcoreapp2.2;netcoreapp2.1;net461;net471</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0;net8.0;net48;</TargetFrameworks>
     <Authors>J.D. Cain</Authors>
     <Company />
     <Description>Xunit extension for topological ordering of test dependencies within a collection</Description>
@@ -11,8 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="xunit.extensibility.core" Version="2.4.1" />
-    <PackageReference Include="xunit.extensibility.execution" Version="2.4.1" />
+    <PackageReference Include="xunit.extensibility.core" Version="2.7.0" />
+    <PackageReference Include="xunit.extensibility.execution" Version="2.7.0" />
   </ItemGroup>
 
 </Project>
