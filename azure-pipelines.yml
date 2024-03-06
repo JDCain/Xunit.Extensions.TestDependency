@@ -22,11 +22,10 @@ stages:
   jobs:
   - job: 
     steps:
-      - task: GitVersion@5
+      - task: gitversion/execute@0
         inputs:
-            runtime: 'core'
-            configFilePath: 'GitVersion.yml'
-            additionalArguments: '/output json'
+          configFilePath: 'GitVersion.yml'
+          additionalArguments: '/output json'
       - task: DotNetCoreCLI@2
         inputs:
             command: 'build'
